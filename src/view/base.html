@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:v-bind="http://www.w3.org/1999/xhtml" xmlns:v-on="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta charset="UTF-8">
+        <title>Title</title>
+        <link rel="stylesheet" type="text/css" href="../css/base.css">
+
+    </head>
+    <body>
+        <div id="app" class="app">
+            <span>差值表达式的使用</span>
+            <p>{{msg}}</p>
+            <p>{{1+1}}</p>
+            <p>{{arr}}</p>
+            <p>{{arr[0]}}</p>
+            <p>{{arr[0]}}</p>
+            <p>{{true?"ok":"bed"}}</p>
+            <p>{{ {a:"123",b:"456"} }}</p>
+        </div>
+        <div id="commond">
+            <span>
+                <p>v-bind</p>
+                <p>绑定属性</p>
+                <p>可以简化为 : </p>
+                <p>绑定属性时不用差值表达式</p>
+            </span>
+            <a v-bind:href="href">打开链接</a>
+            <a :href="href">打开百度</a>
+        </div>
+        <div id="text">
+            <span>
+                <p>v-text</p>
+                <p>类似原生js的innerText</p>
+                <p>v-text不会再vue渲染之前有代码出现</p>
+                <p v-text="msg"></p>
+            </span>
+        </div>
+        <div id="cloak">
+            <span>
+                <p>v-cloak</p>
+                <p>可以隐藏差值表达式</p>
+                <p>v-text不会再vue渲染之前有代码出现</p>
+                <p v-cloak>{{msg}}</p>
+            </span>
+        </div>
+
+        <div id="model">
+            <span>
+                <p>v-model</p>
+                <p>vue两大特点：双向数据绑定，组件化</p>
+                <p>v-model数据双向绑定</p>
+                <p>实现原理：Object.defineProperty</p>
+                <span></span>
+                <input type="text" v-model="a" id="ing">+
+                <input type="text" v-model="b">=
+                {{+a + +b}}
+
+            </span>
+        </div>
+
+        <div id="on">
+            <span>
+                <p>v-on</p>
+                <p>v-on绑定时间</p>
+                <p>v-on:事件类型="函数"</p>
+                <p>简写@click</p>
+                <button v-on:click="fun1('v-on传参数')">绑定事件</button>
+
+            </span>
+        </div>
+        <div id="ed">
+            <span>
+                <p>事件修饰符</p>
+                <span>
+                    <span></span>
+                </span>
+
+            </span>
+        </div>
+        
+    </body>
+    <script src="../js/vue.js"></script>
+    <script src="../js/base.js"></script>
+
+</html>

@@ -1,0 +1,38 @@
+*{
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+}
+body{
+    display: flex;
+    flex-wrap: wrap;
+}
+div{
+    background-color:rgba(255,14,15,0.4);
+    margin: 3px;
+    border:1px solid red;
+    color: white;
+    overflow: hidden;
+    border-radius: 10%;
+    box-shadow: 20px 6px 14px rgba(255, 125, 144,0.8 );
+}
+a{
+    text-decoration: none;
+    color:white;
+    display: block;
+}
+button{
+    border-radius: 10%;
+    background-color: #69ccff;
+    color: white;
+}
+button:hover{
+    background: #38e4ff;
+}
+input{
+    width: 30px;
+    border-radius: 10%;
+}
+input:hover{
+    border: 2px #5da2ff solid;
+}
