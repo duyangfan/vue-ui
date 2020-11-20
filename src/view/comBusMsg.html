@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>非父子组件通讯</title>
+    </head>
+    <body>
+        <div id="app">
+            <com-a></com-a>
+            <com-b></com-b>
+        </div>
+    </body>
+    <script src="../js/vue.js"></script>
+    <script>
+        //创建一个空的Vue
+        let eventBus=new Vue();
+        //$on:绑定一个自定义事件 $emit:触发自定义事件
+        <!--
+            $on 和 $emit
+            非父子之间的数据传递：通过中介的方式来通讯
+            1.创建中介者vue实例
+            2.在发送者组件中：使用中介者Vue.$on来绑定一个自定义事件
+            3.在接收方组件中：使用中介者Vue.$emit触发函数来接收发送的数据。
+
+
+        -->
+
+        new Vue({
+            el:'#app',
+            components:{
+                'com-a':{
+                    template:
+                        `<div>
+                            <p>组件A</p>
+                            <p>A:{{msg}}</p>
+                            <p @click="sendB">发送到B</p>
+                        </div>`,
+                    methods:{
+                        sendB(){
+                            eventBus.$emit('getMsg',this.msg);
+                        }
+                    },
+                    data(){
+                        return {
+                            msg:"hello A"
+
+                        }
+                    }
+                },
+                'com-b':{
+                    template:
+                        `<div>
+                            <p>组件B</p>
+                            <p>B:{{info}}</p>
+                            <p>{{msg}}</p>
+                        </div>`,
+                    mounted(){
+                        //给事件总线注册事件
+                        eventBus.$on("getMsg",(msg)=>{
+                            console.log("getMsg event"+msg);
+                            this.msg=msg;
+                        });
+                    },
+                    data(){
+                        return {
+                            info:'hello B',
+                            msg:''
+                        }
+                    }
+                }
+            }
+        });
+
+
+
+    </script>
+</html>
