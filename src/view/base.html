@@ -71,13 +71,134 @@
         <div id="ed">
             <span>
                 <p>事件修饰符</p>
-                <span>
-                    <span></span>
-                </span>
+                <p>@click.stop="fnction":阻止事件冒泡</p>
+                <p>@click.prevent="fnction":阻止默认事件</p>
+                <p>@click.self="fnction":只当事件在该元素触发时执行</p>
+                <p>@click.once="fnction":只触发一次</p>
+                <p>@click.passsive="fnction":</p>
+                <div @click="fun1">
+                    外层
+                    <div @click.stop="fun2">内层</div>
+                </div>
+            </span>
+        </div>
+        <div id="for">
+            <span>
+                <p>v-for</p>
+                <p>item in friut   item:表示每一项</p>
+                <ul>
+                    <li v-for="item in friut">{{item}}</li>
+                </ul>
+                <p >(item,i) in friut   i：表示索引</p>
+                <ul>
+                    <li v-for="(item,i) in friut">{{item}}{{i}}</li>
+                </ul>
+                <ul>
+                    <li v-for="(item,i) in friut" v-text="item"></li>
+                </ul>
+            </span>
+        </div>
+        <div id="entrykey">
+            <span>
+                <p>按键修饰符</p>
+                <input @keyup="func">
+            </span>
+        </div>
+        <div id="if">
+            <span>
+                <p>v-if</p>
+                <p v-if="true">第一个</p>
+                <p v-else="">第二个</p>
+                <p>v-show</p>
+                <p>v-show 改变的是改变display属性</p>
 
             </span>
         </div>
-        
+        <div id="once">
+            <span>
+                <p>v-once</p>
+                <p>只渲染一次</p>
+                <p>v-pre</p>
+                <p>跳过这个元素和子元素渲染</p>
+            </span>
+        </div>
+        <div id="class_bond">
+            <span>
+                <p>class处理</p>
+                <p :class="classStr"></p>
+            </span>
+        </div>
+        <div >
+            <span>
+                <p>生成器 async   wait</p>
+                <p> genertor 生成器函数:function* fun(){}</p>
+                <p> 可以生成多个函数  关键字yield  可以让当前函数暂停执行</p>
+                <p>生成器函数第一次调用的时候回产生一个生成器   执行 有一个重要方法   通过next()方法来实现函数调用</p>
+                <p>async  await  是 生成器的语法糖</p>
+            </span>
+        </div>
+        <div id="com">
+            <span>
+                <p>组件</p>
+                <p>组件定义分为：全局组件(所有vue实例)和局部组件</p>
+                <p>el：挂载点不能配置,后期是嵌入到根实例中引用的</p>
+                <p>组件内部data定义方式有区别</p>
+                <p>
+                    组件内部data是一个函数：data(){return {msg:"test"}}<br/>
+                    每个实例维护一被返回的对象拷贝
+                </p>
+                <p></p>
+                <p>
+                    参数一：组件名称<br>
+                    参数二：配置, vue实例中能写的所有选项<br>
+                    组件中有一个template模板<br/>
+                    Vue.component("login",{})<br>
+                </p>
+                <p>在当前vm实例中使用，通过自定义标签(名称就是组件的名称)</p>
+                <p>
+                    组件命名 组件名字myLogin   页面中标签需要变为 my-login   烤串命名法<br/>
+                    <mark>注意：</mark>在定义的时候，不能包含多个根元素
+                </p>
+                <p></p>
+                <login></login>
+            </span>
+        </div>
+
+        <div id="ps">
+            <span>
+                <p>父子组件</p>
+                <p>组价之间无法直接传递数据</p>
+                <p>组件通讯：</p>
+                <p>
+                    1.prop/$emit<br>
+                    2.$on/$emit 事件总线<br>
+                    3.vuex <br>
+                    4 $parent/$children Srefs<br>
+                    5.$attrs/$listeners<br>
+                    6.provide/inject 依赖注入<br>
+                </p>
+            </span>
+        </div>
+
+
+        <div id="ps_msg">
+            <span>
+                <p>组件通讯
+                    props<br>
+                   父=======>子<br>
+                   1.给子标签添加一个绑定一个自定义属性, :lists(自定义属性)='list'(父组件中data的属性)<br>
+                   2.在子组件中注册该自定义属性名：props:['lists'],lists就表示父组件中的list<br>
+                    <hr/>
+                    $emit<br>
+                   子=======>父<br>
+                   1.在字标签中绑定自定义事件，@sendMSG(事件名称)="save_msg"(触发的父级函数)",<br>
+                   1.在子标签的函数数使用$emit('sendMSG',param1,parma2)函数触发自定义事件，<br>
+               </p>
+            </span>
+        </div>
+
+
+
     </body>
     <script src="../js/vue.js"></script>
     <script src="../js/base.js"></script>

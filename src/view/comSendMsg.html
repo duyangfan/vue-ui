@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>父子组件互相传递值案例</title>
+    </head>
+    <body>
+
+
+        <!--
+               props
+               父=======>子
+               1.给子标签添加一个绑定一个自定义属性, :lists(自定义属性)='list'(父组件中data的属性)
+               2.在子组件中注册该自定义属性名：props:['lists'],lists就表示父组件中的list
+
+                $emit
+               子=======>父
+               1.在字标签中绑定自定义事件，@sendMSG(事件名称)="save_msg"(触发的父级函数)",
+               1.在子标签的函数数使用$emit('sendMSG',param1,parma2)函数触发自定义事件，
+
+
+        -->
+        <div id="app">
+            <parent-form @sendMSG="save_msg"></parent-form>
+            <son-list :lists="list"></son-list>
+        </div>
+    </body>
+    <script src="../js/vue.js"></script>
+    <script>
+        let parent=Vue.component("parent-form",{
+            template:`<div >
+                         <input type="text" v-model="name">
+                         <input type="text" v-model="content">
+                         <input type="button" @click="send" value="发表">
+                      </div>`,
+            data(){
+                return{
+                    name:'',
+                    content:''
+                }
+            },
+            methods:{
+                send(){
+                    this.$emit('sendMSG',this.name,this.content)
+                    this.name="";
+                    this.content="";
+                }
+            }
+
+
+        })
+        let son=Vue.component("son-list",{
+            template:`<div>
+                         <h5>评论内容：</h5>
+                         <ul>
+                            <li v-for="(item,key) in lists " :key="item.id">{{item.id}}-{{item.name}}-{{item.content}}</li>
+                         </ul>
+                      </div>`,
+            props:['lists'],
+        })
+        new Vue({
+            el:"#app",
+            data:{
+                list:[
+                    {
+                        id:1,
+                        name:"naruto",
+                        content:'OK'
+                    },
+                    {
+                        id:2,
+                        name:'sasuke',
+                        content:'Hah'
+                    }
+                    ]
+            },
+            methods:{
+                save_msg(name,content){
+                    this.list.push({id:this.list.length,name,content})
+                }
+            },
+            components:{
+                parent,son
+            }
+        });
+
+
+
+
+    </script>
+</html>

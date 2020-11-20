@@ -30,9 +30,13 @@ button:hover{
     background: #38e4ff;
 }
 input{
-    width: 30px;
+
     border-radius: 10%;
 }
 input:hover{
     border: 2px #5da2ff solid;
+}
+li{
+    float: left;
+    list-style: none;
 }
